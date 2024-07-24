@@ -39,7 +39,8 @@
                             <div class="name">First Name</div>
                             <div class="value">
                                 <div class="input-group">
-                                    {% render_field userForm.first_name|attr:'required:true'  class="input--style-5"  %}
+                                    <input type="text" id="first_name" name="first_name" class="input--style-5" 
+                                           required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed">
                                 </div>
                             </div>
                         </div>
@@ -48,10 +49,10 @@
                             <div class="name">Last Name</div>
                             <div class="value">
                                 <div class="input-group">
-                                    {% render_field userForm.last_name|attr:'required:true'  class="input--style-5"  %}
+                                    {% render_field userForm.last_name|attr:'required:true' class="input--style-5" pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" %}
                                 </div>
                             </div>
-                        </div>
+                          </div>
 
                         <div class="form-row">
                             <div class="name">Username</div>
@@ -66,7 +67,10 @@
                             <div class="name">Password</div>
                             <div class="value">
                                 <div class="input-group">
-                                    {% render_field userForm.password|attr:'required:true'  class="input--style-5"  %}
+                                    <input type="password" name="password" class="input--style-5" required
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                                           title="Password must be at least 5 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character."
+                                           placeholder="Enter your password">
                                 </div>
                             </div>
                         </div>
@@ -112,7 +116,11 @@
                             <div class="name">Contact No.</div>
                             <div class="value">
                                 <div class="input-group">
-                                    {% render_field donorForm.mobile|attr:'required:true'  class="input--style-5"  %}
+                                    <input type="text" name="mobile" class="input--style-5" required
+                                           pattern="9[78]\d{8}" 
+                                           title="Please enter a valid 10-digit phone number starting with 98 or 97." 
+                                           placeholder="Enter your contact number" 
+                                           maxlength="10">
                                 </div>
                             </div>
                         </div>

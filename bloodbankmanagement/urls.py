@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LogoutView,LoginView
 from blood import views
+
+
 urlpatterns = [
+    path('search-donors/', views.search_donors, name='search_donors'),
+    
     path('admin/', admin.site.urls),
 
     

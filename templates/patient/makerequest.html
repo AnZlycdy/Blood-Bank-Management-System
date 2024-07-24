@@ -22,10 +22,10 @@
                     {% csrf_token %}
 
                     <div class="form-row">
-                        <div class="name">Patient Name</div>
+                        <div class="name">Patient's Name</div>
                         <div class="value">
                             <div class="input-group">
-                                {% render_field request_form.patient_name|attr:'required:true'  class="input--style-5"  %}
+                                {% render_field request_form.patient_name|attr:"required:true"|attr:"pattern:[A-Za-z\s]+"|attr:"minlength:4"|attr:"maxlength:50"|attr:"title:Please enter a valid name (letters and spaces only, 2-50 characters)."|attr:"class:input--style-5"|attr:"placeholder:Enter patient's name" %}
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="name">Unit (ml)</div>
+                        <div class="name">Unit (pint)</div>
                         <div class="value">
                             <div class="input-group">
                                 {% render_field request_form.unit|attr:'required:true'  class="input--style-5"  %}

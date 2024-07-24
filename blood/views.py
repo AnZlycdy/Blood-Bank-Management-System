@@ -13,6 +13,14 @@ from patient import models as pmodels
 from donor import forms as dforms
 from patient import forms as pforms
 
+# blood/views.py
+from django.shortcuts import render
+from .models import Donor  # Ensure this is the correct model
+
+def search_donors(request):
+    donors = Donor.objects.all()  # Adjust query as needed
+    return render(request, 'blood/search_donors.html', {'donors': donors})
+ 
 def home_view(request):
     x=models.Stock.objects.all()
     print(x)

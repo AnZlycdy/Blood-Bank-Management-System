@@ -1,0 +1,35 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+<br><br>
+<br><br><br>
+<div class="container">
+    <h4 class="text-center">Generate Report by Blood Group</h4>
+    <div class="text-center">
+        <select id="bloodGroupSelect" class="form-select" style="width: 200px; display: inline-block;">
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <button class="btn btn-primary" onclick="generateReportByBloodGroup()">Generate</button>
+    </div>
+    
+    <br>
+
+    
+    <br>
+<div class="text-center">
+    <button class="btn btn-primary" onclick="generateReportByDuration()">Generate Report By Duration</button>
+</div>
+    
+
+{% endblock content %}
+
+
