@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.conf import settings
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from donor import models as dmodels
@@ -19,6 +19,15 @@ from .models import Donor  # Ensure this is the correct model
 
 def search_donors(request):
     donors = Donor.objects.all()  # Adjust query as needed
+    if request.method == 'POST':
+        blood_group = request.POST.get('bloodgroup')
+        if blood_group:
+            donors = dmodels.Donor.objects.filter(bloodgroup=blood_group)
+            return render(request,'blood/donors_report.html', {'donors': donors, "blood_group": blood_group})
+        else:
+            duration_report_date = date.today() - timedelta(days=30)
+            blood_requests = models.BloodRequest.objects.filter(status='Approved', date_approved__lte=duration_report_date)
+            return render(request,'blood/duration_report.html', {'blood_requests': blood_requests})
     return render(request, 'blood/search_donors.html', {'donors': donors})
  
 def home_view(request):
@@ -218,6 +227,7 @@ def update_approve_status_view(request,pk):
         stock.unit=stock.unit-unit
         stock.save()
         req.status="Approved"
+        req.date_approved = date.today()
         
     else:
         message="Stock Doest Not Have Enough Blood To Approve This Request, Only "+str(stock.unit)+" Unit Available"
@@ -244,6 +254,7 @@ def approve_donation_view(request,pk):
     stock.save()
 
     donation.status='Approved'
+    donation.date_approved = date.today()
     donation.save()
     return HttpResponseRedirect('/admin-donation')
 

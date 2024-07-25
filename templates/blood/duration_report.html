@@ -1,0 +1,38 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+<br><br>
+<br><br><br>
+<div class="container">
+    <h4 class="text-center">Generate Report by Duration</h4>
+    <table class="table table-light table-hover table-bordered table-striped">
+        <thead class="bg-dark">
+            <tr>
+                <th scope="col" style="color: rgb(192, 192, 192);">Patient's Name</th>
+                <th scope="col" style="color: rgb(192, 192, 192);">Blood Grouo</th>
+                <th scope="col" style="color: rgb(192, 192, 192);">Unit(pint)</th>
+                <th scope="col" style="color: rgb(192, 192, 192);">Date of approve</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in blood_requests %}
+            <tr>
+                <td> {{d.patient_name}}</td>
+                <td>{{d.bloodgroup}}</td>
+                <td>{{d.unit}}</td>
+                <td>{{d.date_approved}}</td>
+                
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    
+    </table>
+    
+</div>
+    
+
+{% endblock content %}
+
+

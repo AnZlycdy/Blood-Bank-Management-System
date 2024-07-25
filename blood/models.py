@@ -45,7 +45,9 @@ class BloodRequest(models.Model):
     bloodgroup=models.CharField(max_length=10)
     unit=models.PositiveIntegerField(default=0)
     status=models.CharField(max_length=20,default="Pending")
+    date_approved = models.DateField(null=True)
     date=models.DateField(auto_now=True)
+    
     def __str__(self):
         return self.bloodgroup
 
